@@ -58,7 +58,7 @@
     <!-- END Header -->
     {% block breadcrumbs %}
     <div class="breadcrumbs">
-    <a href="{% url 'admin:index' %}">{% trans 'Home' %}</a>
+    <a href="{% url 'admin:index' %}">{% trans 'Home' %}</a> <p style='text-align:right'> Reputation Count : <b>{{testme}}</b></p>
     {% if title %} &rsaquo; {{ title }}{% endif %}
     </div>
     {% endblock %}
