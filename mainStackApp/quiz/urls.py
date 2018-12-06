@@ -1,6 +1,6 @@
 from django.urls import path, include
 from django.views.generic import TemplateView
-from quiz.views import QuestionListView, QuestionCreateView, QuestionDetailView, rate_question, rate_answer
+from quiz.views import QuestionListView, QuestionDetailView, rate_question, rate_answer
 
 urlpatterns = [
                 path('all/', QuestionListView.as_view(),name='question_list'),

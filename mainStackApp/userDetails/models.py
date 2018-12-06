@@ -11,7 +11,7 @@ from django.shortcuts import get_object_or_404
 
 
 class UserProfile(models.Model):
-    user = models.OneToOneField(User)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     reputation = models.IntegerField(default=0)
 
     def __str__(self):
