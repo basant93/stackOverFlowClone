@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load  rupluralize from question %}
+{% block sidebar %}
+
+  <div id="sidebar" class="col-xs-6 col-sm-3 sidebar-offcanvas" role="navigation">
+    <div class="list-group ">
+      <div class="list-group-item text-center" style="background-color: #E7ECEE"><h4>View answers for following question</h4></div>
+        <ul>
+          
+          {% for q in related_questions  %}
+          <li>
+            <a href="{{ q.get_absolute_url }} " class="list-group-item">{{ q.title }}</a>
+          </li>  
+        </ul>
+            {% empty %}
+          <a href="#" class="list-group-item text-center">No question given</a>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="box blog_teaser">
+        <h2 style="margin-top: 10px;">{{ question_detail.title }}</h2>
+        <hr>
+        
+        <p> {{ question_detail.question_text|safe }} </p>
+        {% include "misc/questions/bottom_question_detail.html" %}
+        <hr>
+  
+        <h3>
+          {{ question_detail.answer_set.all|length }} {{ question_detail.answer_set.all|length|rupluralize:"Answer,Answers,Answers" }}
+        </h3>
+      </div>
+      <hr>
+      {% for answer in question_detail.answer_set.all %}
+                <div style="text-align: left">
+                    <input type="hidden" name="_id_" value="21087010">
+                    <a style="font-size: 20px" title="This answer is useful" href="{% url 'answer_rate' object_id=answer.pk score='up' %}">up vote</a>
+                    <span  style="font-size: 25px"  > {{ answer.rating }}</span>
+                    <a style="font-size: 20px" title="This answer is not useful" href="{% url 'answer_rate' object_id=answer.pk score='down' %}">down vote</a>
+            </div>
+          
+          <p>{{ answer.answer_text|safe }}</p>
+          {% include "misc/questions/bottom_answer.html" %}
+          <hr>
+         
+        </div>
+      {% endfor %}
+    
+{% endblock sidebar %}

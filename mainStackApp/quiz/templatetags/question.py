@@ -2,7 +2,6 @@
 from django import template
 from quiz.models import SavedQuestion
 from django.utils.safestring import mark_safe
-from quiz.views import get_active_questions
 
 
 register = template.Library()

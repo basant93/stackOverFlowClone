@@ -1,0 +1,21 @@
+{% load humanize %}
+
+<div align="right">
+ <div style="width: 200px; height:70px; background-color: #E7ECEE">
+   <div class="text-left">
+     {{ question_detail.created_at|naturalday }} | {{ question_detail.created_at|time:"H:i" }}
+   </div>
+   <div class="text-left" style="line-height: 22px" >
+    <p>Author : {{ question_detail.author }}</p>
+   </div>
+ </div>
+ <br>
+ <div class="text-left">
+   {% for question_tag in question_detail.question_tag.all %}
+    <a class="post-tag" href="">{{ question_tag }}</a>
+    
+   {% endfor %}
+ </div>
+</div>
+
+

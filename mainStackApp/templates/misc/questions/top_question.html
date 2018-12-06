@@ -1,0 +1,17 @@
+
+{% load rupluralize from question %}
+  <div>
+          <div style="text-align: left">
+              <input type="hidden" name="_id_" value="21087010">
+              <a style="font-size: 20px" title="This answer is useful" href="{% url 'question_rate' object_id=question.pk score='up' %}">up vote</a>
+              <span  style="font-size: 25px"  > {{ question.rating }}</span>
+              <a style="font-size: 20px" title="This answer is not useful" href="{% url 'question_rate' object_id=question.pk score='down' %}">down vote</a>
+      </div>
+
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <span style="font-size: 30px"><b>
+    <span {% if question.answer_set.all|length > 0 %} style="color: #FFB606" {% endif %}>{{ question.answer_set.all|length }}</span>
+    </b></span> {{ question.answer_set.all|length|rupluralize:"answer,answers,answers" }}
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <span class="glyphicon glyphicon-eye-open icon-style" title="viewed"></span>&nbsp{{ question.view_count }} viewed
+

@@ -24,7 +24,7 @@ def add_answer_reputation(sender, instance, **kwargs):
     Increase reputation for every answer given.
     """
     user_id = instance.author_id
-    user_obj = get_object_or_404(User, id=user_id)
+    user_obj = get_object_or_404(UserProfile, user_id=user_id)
     user_obj.reputation +=1
     user_obj.save()
 
@@ -35,7 +35,16 @@ def add_question_reputation(sender, instance, **kwargs):
     Increase reputation for every question asked.
     """
     user_id = instance.author_id
-    user_obj = get_object_or_404(User, id=user_id)
+    user_obj = get_object_or_404(UserProfile, user_id=user_id)
     user_obj.reputation +=1
     user_obj.save()
     
+@receiver(post_save, sender=User)
+def add_user_profile(sender, instance, **kwargs):
+    """
+    Increase reputation for every question asked.
+    """
+    user_id = instance.id
+    UserProfile.object.create(user_id = user_id)
+
+
