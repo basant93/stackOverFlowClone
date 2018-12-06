@@ -27,9 +27,7 @@
       <div class="col-xs-12 col-sm-9">
         {% for question in question_list  %}
           <div class="box blog_teaser">
-            <p class="pull-right visible-xs">
-              <button class="btn btn-primary btn-xs" data-toggle="offcanvas" type="button">Hello</button>
-            </p>
+            
             <h2 style="margin-top: 5px"><a href="{{ question.get_absolute_url }}">{{ question.title }}</a></h2>
             <hr>
             {% include "misc/questions/top_question.html" %}
